@@ -52,6 +52,7 @@ foreach($info as $data){
 			//Phone numbers come with backslashes and dashes so change them as well.
 			elseif($entity == "telephonenumber") $entry[$returns[$entity]] =  str_replace(array("/","-"),"", $data[$entity][0]);
 			elseif($entity == "mobile") $entry[$returns[$entity]] =  str_replace(array("/","-"),"", $data[$entity][0]);
+			elseif($entity == "ou") $entry[$returns[$entity]] = convertmulti($data[$entity]);
 			else $entry[$returns[$entity]] =  $data[$entity][0];
 		}
 	}

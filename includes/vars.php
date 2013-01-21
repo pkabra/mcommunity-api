@@ -48,11 +48,24 @@ function phoneuntrim($str){
 	}
 }
 
+//Function converts the way the array data is structure in a multivalued
+//return attribute. This way data remains consistent with structure of this application.
+//ie. Array data is returned with a "count" attribute and a "data" attribute holding the data.
+function convertmulti($array){
+	$data = array();
+	for($i = 0; $i<$array["count"];$i++){
+		$data[$i] = $array[$i];
+	}
+	return array("count" => $array["count"], "data" => $data);
+}
+
 //Array stores attribute to attribute assignments.
 //I changed some of the attribute names so when a request is made its easier for people to understand.
 $requests = array("uniqname" => "uid",
 				"firstname" => "givenName",
 				"surname" => "sn",
+				"title" => "umichtitle",
+				"affiliations" => "ou",
 				"address" => "umichHomePostalAddress",
 				"workaddress" => "umichPostalAddress",
 				"mobile" => "mobile",
@@ -64,6 +77,8 @@ $returns = array("uid" => "uniqname",
 				"cn" => "fullname",
 				"givenname" => "firstname",
 				"sn" => "surname",
+				"umichtitle" => "title",
+				"ou" => "affiliations",
 				"umichhomepostaladdress" => "address",
 				"umichpostaladdress" => "workaddress",
 				"mobile" => "mobile",
@@ -71,7 +86,7 @@ $returns = array("uid" => "uniqname",
 				"mail" => "mail");
 
 //Array used in the LDAP search to let LDAP know what to return.
-$allentities = array("uid","cn","givenname","sn","umichpostaladdress","umichHomePostalAddress","mobile","telephonenumber","mail");
+$allentities = array("uid","cn","givenname","sn","umichtitle","ou","umichpostaladdress","umichHomePostalAddress","mobile","telephonenumber","mail");
 
 //Variable stores all the data being searched for.
 $searchvars = $_GET;
