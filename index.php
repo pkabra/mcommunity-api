@@ -1,0 +1,70 @@
+<?php
+
+/*
+Quick MCommunity API
+For getting MCommunity data in a JSON format for whatever reason you need it.
+
+Documentation for use available in README.md
+
+Designed by Pratik Kabra
+*/
+
+//Turn off error warnings because ldap warns me when more than 350 results are returned.
+//(The LDAP directory is restricted to 350 returns for anonymous users)
+error_reporting(E_ERROR | E_PARSE);
+
+//Include file that controls variables and connects to LDAP respectively.
+require('includes/vars.php');
+require('includes/ldap.php');
+
+//This variable is used to convert search queries into an LDAP approved search query.
+$ldapsearch = "(&";
+
+//Pass through all query requests, check if they are valid choices and then add them to the ldapsearch.
+foreach(array_keys($searchvars) as $var){
+	if(in_array($var, array_keys($requests))){
+		$ldapsearch .= "(";
+		$ldapsearch .= $requests[$var]."=".clean($searchvars[$var]);
+		$ldapsearch .= ")";
+	}
+}
+$ldapsearch .= ")";
+
+//Run the ldap search and get results.
+$search = ldap_search($ldap, "ou=People, dc=umich, dc=edu", $ldapsearch, $allentities);
+$info = ldap_get_entries($ldap, $search);
+
+//This variable will store all returned results.
+$out = array();
+
+//LDAP returns things in a very ugly format.
+//I'm assuming it has some purpose but I can't figure it out so
+//for now I'm going to change the organisation which is done here.
+foreach($info as $data){
+	//Temp var to hold data until it gets pushed onto the main store.
+	$entry = array();
+	foreach($allentities as $entity){
+		if(array_key_exists($entity, $data)){
+			//Postal addresses have '$' signs instead of line breaks so change them.
+			if($entity == "umichpostaladdress") $entry[$entity] =  str_replace("$",", ", $data[$entity][0]);
+			//Phone numbers come with backslashes and dashes so change them as well.
+			elseif($entity == "telephonenumber") $entry[$entity] =  str_replace(array("/","-"),"", $data[$entity][0]);
+			elseif($entity == "mobile") $entry[$entity] =  str_replace(array("/","-"),"", $data[$entity][0]);
+			else $entry[$entity] =  $data[$entity][0];
+		}
+	}
+	//This statement skips any empty results.
+	if(!empty($entry)) array_push($out, $entry);
+}
+
+//Finally output data.
+//If the request is Ajax or xml then just output the JSON
+//otherwise add a <pre> tag to make it look pretty in a browser.
+if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+  echo json_encode($out, JSON_PRETTY_PRINT);
+}
+else{
+	echo "<pre>";
+	echo json_encode($out, JSON_PRETTY_PRINT);
+	echo "</pre>";
+}
