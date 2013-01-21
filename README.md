@@ -60,11 +60,11 @@ The following information is returned in the `data` attribute, if available. Not
 
 Any requested data that is queried acts as an AND statement. Therefore entries may be excluded. For example `uniqname=pkabra&firstname=John` will return no data as no entry will be found with both Uniqname=pkabra and Firstname=John (that uniqname is mine and my firstname is Pratik, not John).
 
-Private data is equivilant to that data not existing. Therefore if I query my address, there will be no returned data as my home address is private.
+Private data is equivilant to that data not existing. Therefore, if I query my address, there will be no returned data as my home address is private.
 
 Wildcards can be used. Example `firstname=p*` or `firstname=*p` or even `firstname=*p*`.
 
-The `affiliations` attribute returns affiliations with departments eg. Computer Science as an array of data. As such the format is similar to the way the entire list of students is returned. The first element is the `"count"` which contains the total number of affiliations returned. The second element is `"data"` which contains the actual list of affiliations. Exactly the same way as the list of students is returned.
+The `affiliations` attribute returns affiliations with departments eg. (Computer Science) as an array of data. As such the format is similar to the way the entire list of students is returned. The first element is the `"count"` which contains the total number of affiliations returned. The second element is `"data"` which contains the actual list of affiliations. Exactly the same way as the list of students is returned.
 
 
 ##Limits
