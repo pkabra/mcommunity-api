@@ -24,7 +24,9 @@ $ldapsearch = "(&";
 foreach(array_keys($searchvars) as $var){
 	if(in_array($var, array_keys($requests))){
 		$ldapsearch .= "(";
-		$ldapsearch .= $requests[$var]."=".clean($searchvars[$var]);
+		//Need to add back slash and dash into phone number
+		if($var == "mobile" || $var == "phone") echo $ldapsearch .= $requests[$var]."=".phoneuntrim($searchvars[$var]);
+		else $ldapsearch .= $requests[$var]."=".clean($searchvars[$var]);
 		$ldapsearch .= ")";
 	}
 }
