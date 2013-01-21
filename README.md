@@ -7,9 +7,9 @@ A simple API that connects to the MCommunity LDAP and returns information that i
 Requests can be sent to the api very easily.
 For example:
 
-> `http://mcommunity.kabra.com/?uniqname=pkabra`
+> `http://kabra.com/mcommunity/?uniqname=pkabra`
 
-> `http://mcommunity.kabra.com/?firstname=P*&surname=Kabra`
+> `http://kabra.com/mcommunity/?firstname=P*&surname=Kabra`
 
 Will return information, that is publicly available, about me.
 
@@ -34,7 +34,13 @@ As such if you query them, the return may exclude some entries. (Look at conside
 
 ##Return Attributes
 Data will be returned in JSON format.
-The following information is returned if available. Note, if data is restricted or contains nothing it will not return.
+
+Two attributes are returned in the first level of JSON.
+
+- `count` which is the number of entries returned
+- `data` which contains the returned entries
+
+The following information is returned in the `data` attribute, if available. Note, if data is restricted or contains nothing it will not return.
 
 - `uniqname` for Uniqname
 - `fullname` for full name
