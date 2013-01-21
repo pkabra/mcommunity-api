@@ -7,9 +7,9 @@ A simple API that connects to the MCommunity LDAP and returns information that i
 Requests can be sent to the api very easily.
 For example:
 
-> `http://kabra.com/mcommunity/?uniqname=pkabra`
+> `http://mcommunity.kabra.com/?uniqname=pkabra`
 
-> `http://kabra.com/mcommunity/?firstname=P*&surname=Kabra`
+> `http://mcommunity.kabra.com/?firstname=P*&surname=Kabra`
 
 Will return information, that is publicly available, about me.
 
