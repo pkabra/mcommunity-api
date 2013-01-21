@@ -8,6 +8,7 @@ Requests can be sent to the api very easily.
 For example:
 
 > `http://kabra.com/mcommunity/?uniqname=pkabra`
+  
 > `http://kabra.com/mcommunity/?firstname=P*&surname=Kabra`
 
 Will return information, that is publicly available, about me.
