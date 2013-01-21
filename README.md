@@ -22,6 +22,8 @@ The following variables will always contain data.
 - `uniqname` for Uniqname
 - `firstname` for first name
 - `surname` for last name
+- `title` for searching "Title" ie. Undergraduate/Graduate etc.
+- `affiliations` for searching affiliations with departments eg. Computer Science
 - `mail` for umich email address (not much use)
 
 The following variables may not contain data.
@@ -46,11 +48,13 @@ The following information is returned in the `data` attribute, if available. Not
 - `fullname` for full name
 - `firstname` for first name
 - `surname` for last name
-- `mail` for umich email address (not much use)
+- `title` for "Title" ie. Undergraduate/Graduate etc.
+- `affiliations` returns affiliations with departments eg. Computer Science (Note: Returns array of affiliations)
 - `address` for home address (Note: Could be private)
 - `workaddress` for work address
 - `phone` for telephone number
 - `mobile` for mobile number (Note: Could be private)
+- `mail` for umich email address (not much use)
 
 ##Considerations
 
@@ -60,9 +64,12 @@ Private data is equivilant to that data not existing. Therefore if I query my ad
 
 Wildcards can be used. Example `firstname=p*` or `firstname=*p` or even `firstname=*p*`.
 
+The `affiliations` attribute returns affiliations with departments eg. Computer Science as an array of data. As such the format is similar to the way the entire list of students is returned. The first element is the `"count"` which contains the total number of affiliations returned. The second element is `"data"` which contains the actual list of affiliations. Exactly the same way as the list of students is returned.
+
+
 ##Limits
 
-- Active directory will only return a maximum of 350 entries to anonymous users. Your query may return even more results, but you will only receive the first entries.
+- Active directory will only return a maximum of 350 entries to anonymous users. Your query may return even more results, but you will only receive the first entries. (Trying to workaround but introducing multiple queries. Feel free to come up with a solution yourself.)
 
 - UMIDs are restricted data, reserved only for administrative users. Therefore you cannot query UMIDs.
 
