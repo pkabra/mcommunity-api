@@ -71,7 +71,7 @@ The `affiliations` attribute returns affiliations with departments eg. Computer 
 
 - Active directory will only return a maximum of 350 entries to anonymous users. Your query may return even more results, but you will only receive the first entries. (Trying to workaround but introducing multiple queries. Feel free to come up with a solution yourself.)
 
-- UMIDs are restricted data, reserved only for administrative users. Therefore you cannot query UMIDs.
+- UMIDs are restricted data, reserved only for administrative users. Therefore, you cannot query UMIDs.
 
 ##Dependencies
 
