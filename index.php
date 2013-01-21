@@ -46,11 +46,11 @@ foreach($info as $data){
 	foreach($allentities as $entity){
 		if(array_key_exists($entity, $data)){
 			//Postal addresses have '$' signs instead of line breaks so change them.
-			if($entity == "umichpostaladdress") $entry[$entity] =  str_replace("$",", ", $data[$entity][0]);
+			if($entity == "umichpostaladdress") $entry[$returns[$entity]] =  str_replace("$",", ", $data[$entity][0]);
 			//Phone numbers come with backslashes and dashes so change them as well.
-			elseif($entity == "telephonenumber") $entry[$entity] =  str_replace(array("/","-"),"", $data[$entity][0]);
-			elseif($entity == "mobile") $entry[$entity] =  str_replace(array("/","-"),"", $data[$entity][0]);
-			else $entry[$entity] =  $data[$entity][0];
+			elseif($entity == "telephonenumber") $entry[$returns[$entity]] =  str_replace(array("/","-"),"", $data[$entity][0]);
+			elseif($entity == "mobile") $entry[$returns[$entity]] =  str_replace(array("/","-"),"", $data[$entity][0]);
+			else $entry[$returns[$entity]] =  $data[$entity][0];
 		}
 	}
 	//This statement skips any empty results.

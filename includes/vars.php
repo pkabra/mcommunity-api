@@ -16,15 +16,25 @@ function clean($str){
 $requests = array("uniqname" => "uid",
 				"firstname" => "givenName",
 				"surname" => "sn",
-				"address" => "postalAddress",
-				"umichPostalAddress" => "umichPostalAddress",
+				"address" => "umichHomePostalAddress",
+				"workaddress" => "umichPostalAddress",
 				"mobile" => "mobile",
-				"pager" => "pager",
-				"telephoneNumber" => "telephoneNumber",
+				"phone" => "telephoneNumber",
+				"mail" => "mail");
+
+//Same as the requests attribute except reversed to simplify JSON return.
+$returns = array("uid" => "uniqname",
+				"cn" => "fullname",
+				"givenname" => "firstname",
+				"sn" => "surname",
+				"umichhomepostaladdress" => "address",
+				"umichpostaladdress" => "workaddress",
+				"mobile" => "mobile",
+				"telephonenumber" => "phone",
 				"mail" => "mail");
 
 //Array used in the LDAP search to let LDAP know what to return.
-$allentities = array("uid","cn","givenname","sn","postaladdress","umichpostaladdress","mobile","pager","telephonenumber","mail");
+$allentities = array("uid","cn","givenname","sn","umichpostaladdress","umichHomePostalAddress","mobile","telephonenumber","mail");
 
 //Variable stores all the data being searched for.
 $searchvars = $_GET;
