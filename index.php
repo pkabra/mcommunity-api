@@ -62,14 +62,5 @@ foreach($info as $data){
 
 $data = array("count" => $info["count"], "data" => $out);
 
-//Finally output data.
-//If the request is Ajax or xml then just output the JSON
-//otherwise add a <pre> tag to make it look pretty in a browser.
-if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-  echo json_encode($data, JSON_PRETTY_PRINT);
-}
-else{
-	echo "<pre>";
-	echo json_encode($data, JSON_PRETTY_PRINT);
-	echo "</pre>";
-}
+header('Content-Type: application/json');
+echo json_encode($data);
