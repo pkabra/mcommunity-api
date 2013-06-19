@@ -1,15 +1,16 @@
 #MCommunity JSON API
 
 A simple API that connects to the MCommunity LDAP and returns information that is publicly available on MCommunity in JSON format to use in whatever way you can imagine.
+The API is publicly accessible from `http://mcommunity-api.herokuapp.com/` if you don't wish to use a local copy.
 
 ##The Usage
 
 Requests can be sent to the api very easily.
 For example:
 
-> `http://kabra.com/mcommunity/?uniqname=pkabra`
+> `http://mcommunity-api.herokuapp.com/?uniqname=pkabra`
 
-> `http://kabra.com/mcommunity/?firstname=P*&surname=Kabra`
+> `http://mcommunity-api.herokuapp.com/?firstname=P*&surname=Kabra`
 
 Will return information, that is publicly available, about me.
 
