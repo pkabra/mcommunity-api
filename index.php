@@ -63,4 +63,5 @@ foreach($info as $data){
 $data = array("count" => $info["count"], "data" => $out);
 
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 echo json_encode($data);
